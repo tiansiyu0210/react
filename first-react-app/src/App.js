@@ -10,9 +10,9 @@ class App extends Component {
         // we use className instead of class, cause 'class' is a reserve word in Js
       <div className="App">
         <h1>header</h1>
-        <Person/>
-        <Person/>
-        <Person/>
+        <Person name="tian" age="31"/>
+        <Person name="chris" age="23"/>
+        <Person name="mike" age="21"/>
       </div>
     );
     //jsx compiles to the code below
