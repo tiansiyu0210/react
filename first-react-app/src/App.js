@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Person from './Person/Person';
 
 class App extends Component {
   render() {
@@ -8,14 +9,10 @@ class App extends Component {
         //this is jsx code , not html
         // we use className instead of class, cause 'class' is a reserve word in Js
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          111To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <h1>another header</h1>
+        <h1>header</h1>
+        <Person/>
+        <Person/>
+        <Person/>
       </div>
     );
     //jsx compiles to the code below
