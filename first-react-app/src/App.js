@@ -23,6 +23,17 @@ class App extends Component{
         })
     }
 
+    changeNameHandler =  (event) => {
+        console.log("changeNameHandler");
+        this.setState({
+            persons: [
+                {name: 'tian', age: "36" },
+                {name: 'lalaal', age: "22" },
+                {name: event.target.value, age: "23" }
+            ]
+        })
+    }
+
     render() {
         return (
             //this is jsx code , not html
@@ -33,9 +44,9 @@ class App extends Component{
             <button onClick={() => this.switchNameHandler('=====siyu')}>switch name</button>
             <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
             <Person name={this.state.persons[1].name} age={this.state.persons[1].age}
-                    {/* this way is better than line 33 */}
                     passClick={this.switchNameHandler.bind(this, "siyu=====")}>My hobbies: racing</Person>
-            <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+            <Person name={this.state.persons[2].name} age={this.state.persons[2].age}
+                    changeName={this.changeNameHandler}/>
           </div>
         );
         //jsx compiles to the code below
