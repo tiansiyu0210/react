@@ -43,6 +43,20 @@ class App extends Component{
     }
 
     render() {
+        let persons = null;
+
+        if(this.state.showPersons){
+            persons = (
+                <div>
+                    <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+                    <Person name={this.state.persons[1].name} age={this.state.persons[1].age}
+                            passClick={this.switchNameHandler.bind(this, "siyu=====")}>My hobbies: racing</Person>
+                    <Person name={this.state.persons[2].name} age={this.state.persons[2].age}
+                            changeName={this.changeNameHandler}/>
+                </div>
+            )
+        }
+
         return (
             //this is jsx code , not html
             // we use className instead of class, cause 'class' is a reserve word in Js
@@ -50,17 +64,7 @@ class App extends Component{
             <h1>header</h1>
             {/* https://reactjs.org/docs/events.html#supported-events */}
             <button onClick={this.togglePersonsHandler}>show/hide person</button>
-              {
-                  this.state.showPersons ?
-                  <div>
-                      <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-                      <Person name={this.state.persons[1].name} age={this.state.persons[1].age}
-                              passClick={this.switchNameHandler.bind(this, "siyu=====")}>My hobbies: racing</Person>
-                      <Person name={this.state.persons[2].name} age={this.state.persons[2].age}
-                              changeName={this.changeNameHandler}/>
-                  </div> : null
-              }
-
+              {persons}
           </div>
         );
         //jsx compiles to the code below
