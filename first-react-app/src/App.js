@@ -86,11 +86,22 @@ class App extends Component{
             buttonStyle.backgroundColor = 'red';
         }
 
+        const pClasses = [];
+
+        if(this.state.persons.length <= 2){
+            pClasses.push('red');
+        }
+
+        if(this.state.persons.length <= 1){
+            pClasses.push('bold');
+        }
+
         return (
             //this is jsx code , not html
             // we use className instead of class, cause 'class' is a reserve word in Js
-          <div className="App">
-            <h1>header</h1>
+            <div className="App">
+              <h1>header</h1>
+              <p className={pClasses.join(' ')}>this is really working</p>
             {/* https://reactjs.org/docs/events.html#supported-events */}
             <button style={buttonStyle} onClick={this.togglePersonsHandler}>show/hide person</button>
             {persons}
