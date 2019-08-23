@@ -6,9 +6,9 @@ class App extends Component{
     // state can only be accessed in class-based components!
     state = {
         persons: [
-            {name: "tian", age: "31" },
-            {name: "chris", age: "23" },
-            {name: "mike", age: "21" }
+            {id:'p1', name: "tian", age: "31" },
+            {id:'p2',name: "chris", age: "23" },
+            {id:'p3',name: "mike", age: "21" }
           ],
         showPersons: false
     }
@@ -49,7 +49,13 @@ class App extends Component{
             persons = (
                 <div>
                     {this.state.persons.map((p, index) => {
-                        return (<Person name={p.name} age={p.age} click={() => this.deletePersonHandler(index)}/>)
+                        return (
+                            <Person
+                                name={p.name}
+                                age={p.age}
+                                click={() => this.deletePersonHandler(index)}
+                                key={p.id}
+                            />)
                     })}
                 </div>
             )
