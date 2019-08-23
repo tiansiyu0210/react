@@ -54,6 +54,17 @@ class App extends Component{
     }
 
     render() {
+        console.log('in the render() method');
+
+        const buttonStyle = {
+            backgroundColor: 'green',
+            color: 'white',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer'
+        };
+
         let persons = null;
 
         if(this.state.showPersons){
@@ -70,7 +81,9 @@ class App extends Component{
                             />)
                     })}
                 </div>
-            )
+            );
+
+            buttonStyle.backgroundColor = 'red';
         }
 
         return (
@@ -79,7 +92,7 @@ class App extends Component{
           <div className="App">
             <h1>header</h1>
             {/* https://reactjs.org/docs/events.html#supported-events */}
-            <button onClick={this.togglePersonsHandler}>show/hide person</button>
+            <button style={buttonStyle} onClick={this.togglePersonsHandler}>show/hide person</button>
             {persons}
           </div>
         );
