@@ -9,7 +9,8 @@ class App extends Component{
             {name: "tian", age: "31" },
             {name: "chris", age: "23" },
             {name: "mike", age: "21" }
-          ]
+          ],
+        showPersons: false
     }
 
     switchNameHandler =  (newName) => {
@@ -34,6 +35,13 @@ class App extends Component{
         })
     }
 
+    togglePersonsHandler = () => {
+        const doesShow = this.state.showPersons;
+        this.setState({
+            showPersons: !doesShow
+        })
+    }
+
     render() {
         return (
             //this is jsx code , not html
@@ -41,12 +49,18 @@ class App extends Component{
           <div className="App">
             <h1>header</h1>
             {/* https://reactjs.org/docs/events.html#supported-events */}
-            <button onClick={() => this.switchNameHandler('=====siyu')}>switch name</button>
-            <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-            <Person name={this.state.persons[1].name} age={this.state.persons[1].age}
-                    passClick={this.switchNameHandler.bind(this, "siyu=====")}>My hobbies: racing</Person>
-            <Person name={this.state.persons[2].name} age={this.state.persons[2].age}
-                    changeName={this.changeNameHandler}/>
+            <button onClick={this.togglePersonsHandler}>show/hide person</button>
+              {
+                  this.state.showPersons ?
+                  <div>
+                      <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+                      <Person name={this.state.persons[1].name} age={this.state.persons[1].age}
+                              passClick={this.switchNameHandler.bind(this, "siyu=====")}>My hobbies: racing</Person>
+                      <Person name={this.state.persons[2].name} age={this.state.persons[2].age}
+                              changeName={this.changeNameHandler}/>
+                  </div> : null
+              }
+
           </div>
         );
         //jsx compiles to the code below
