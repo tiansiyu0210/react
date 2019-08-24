@@ -56,16 +56,8 @@ class App extends Component{
     render() {
         console.log('in the render() method');
 
-        const buttonStyle = {
-            backgroundColor: 'green',
-            color: 'white',
-            font: 'inherit',
-            border: '1px solid blue',
-            padding: '8px',
-            cursor: 'pointer'
-        };
-
         let persons = null;
+        let buttonRed = '';
 
         if(this.state.showPersons){
             persons = (
@@ -83,7 +75,7 @@ class App extends Component{
                 </div>
             );
 
-            buttonStyle.backgroundColor = 'red';
+            buttonRed = appClasses.Red;
         }
 
         const pClasses = [];
@@ -105,7 +97,7 @@ class App extends Component{
                     <h1>header</h1>
                     <p className={pClasses.join(' ')}>this is really working</p>
                     {/* https://reactjs.org/docs/events.html#supported-events */}
-                    <button style={buttonStyle} onClick={this.togglePersonsHandler}>show/hide person</button>
+                    <button className={buttonRed} onClick={this.togglePersonsHandler}>show/hide person</button>
                     {persons}
                 </div>
         );
