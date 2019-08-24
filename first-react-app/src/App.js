@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import appClasses from './App.module.css';
 import Person from './Person/Person';
-import Radium, {StyleRoot} from 'radium';
 
 class App extends Component{
     // state can only be accessed in class-based components!
@@ -63,11 +62,7 @@ class App extends Component{
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
-            cursor: 'pointer',
-            ':hover': {
-                backgroundColor: 'lightgreen',
-                color: 'black'
-            }
+            cursor: 'pointer'
         };
 
         let persons = null;
@@ -89,34 +84,30 @@ class App extends Component{
             );
 
             buttonStyle.backgroundColor = 'red';
-            buttonStyle[':hover'] = {
-                backgroundColor: 'salmon',
-                color: 'black'
-            }
         }
 
         const pClasses = [];
 
         if(this.state.persons.length <= 2){
-            pClasses.push('red');
+            pClasses.push(appClasses.red);
         }
 
         if(this.state.persons.length <= 1){
-            pClasses.push('bold');
+            pClasses.push(appClasses.bold);
         }
+
+        console.log(pClasses);
 
         return (
             //this is jsx code , not html
             // we use className instead of class, cause 'class' is a reserve word in Js
-            <StyleRoot>
-                <div className="App">
+                <div className={appClasses.App}>
                     <h1>header</h1>
                     <p className={pClasses.join(' ')}>this is really working</p>
                     {/* https://reactjs.org/docs/events.html#supported-events */}
                     <button style={buttonStyle} onClick={this.togglePersonsHandler}>show/hide person</button>
                     {persons}
                 </div>
-            </StyleRoot>
         );
         //jsx compiles to the code below
         //return React.createElement('div', {className: 'App'}, 'first text', 'second text', React.createElement('h1', null, 'third inner h1 text'));
@@ -124,7 +115,7 @@ class App extends Component{
 }
 
 // lecture 67: run "sudo npm install --save radium"
-export default Radium(App);
+export default App;
 
 
 
