@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component{
     // state can only be accessed in class-based components!
@@ -90,7 +90,7 @@ class App extends Component{
 
             buttonStyle.backgroundColor = 'red';
             buttonStyle[':hover'] = {
-                backgroundColor: 'lightred',
+                backgroundColor: 'salmon',
                 color: 'black'
             }
         }
@@ -108,13 +108,15 @@ class App extends Component{
         return (
             //this is jsx code , not html
             // we use className instead of class, cause 'class' is a reserve word in Js
-            <div className="App">
-              <h1>header</h1>
-              <p className={pClasses.join(' ')}>this is really working</p>
-            {/* https://reactjs.org/docs/events.html#supported-events */}
-            <button style={buttonStyle} onClick={this.togglePersonsHandler}>show/hide person</button>
-            {persons}
-          </div>
+            <StyleRoot>
+                <div className="App">
+                    <h1>header</h1>
+                    <p className={pClasses.join(' ')}>this is really working</p>
+                    {/* https://reactjs.org/docs/events.html#supported-events */}
+                    <button style={buttonStyle} onClick={this.togglePersonsHandler}>show/hide person</button>
+                    {persons}
+                </div>
+            </StyleRoot>
         );
         //jsx compiles to the code below
         //return React.createElement('div', {className: 'App'}, 'first text', 'second text', React.createElement('h1', null, 'third inner h1 text'));
