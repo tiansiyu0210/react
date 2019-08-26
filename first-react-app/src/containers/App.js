@@ -30,6 +30,21 @@ class App extends Component{
         console.log('[App.js] componentDidMount');
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        console.log('[App.js] shouldComponentUpdate');
+        return true;
+    }
+
+    getSnapshotBeforeUpdate(pervProps, prevState){
+        console.log('[App.js] getSnapshotBeforeUpdate');
+        return {message: 'App.getSnapshotBeforeUpdate'};
+    }
+
+    componentDidUpdate(pervProps, prevState, snapshot){
+        console.log('[App.js] componentDidUpdate');
+        console.log(snapshot);
+    }
+
 
 
     deletePersonHandler = (currentIndex) => {
