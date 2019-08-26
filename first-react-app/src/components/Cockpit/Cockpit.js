@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import cockpitClasses from "./Cocktip.module.css";
 
-const cockpit = (props) => {
+//Component name should start with Capital letter
+const Cockpit = (props) => {
+
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect');
+        //Http request...
+    });
 
     let buttonRed = '';
 
@@ -31,4 +37,4 @@ const cockpit = (props) => {
     );
 }
 
-export default cockpit;
+export default Cockpit;
