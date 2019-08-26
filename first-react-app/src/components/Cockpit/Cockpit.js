@@ -23,7 +23,7 @@ const cockpit = (props) => {
 
     return (
         <div className={cockpitClasses.Cockpit}>
-            <h1>header</h1>
+            <h1>{props.title}</h1>
             <p className={pClasses.join(' ')}>this is really working</p>
             {/* https://reactjs.org/docs/events.html#supported-events */}
             <button className={buttonRed} onClick={props.toggle}>show/hide person</button>

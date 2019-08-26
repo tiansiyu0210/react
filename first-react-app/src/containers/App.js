@@ -4,6 +4,13 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component{
+    constructor(props){
+        super(props);
+        console.log('[App.js] constructor');
+    }
+
+
+
     // state can only be accessed in class-based components!
     state = {
         persons: [
@@ -13,6 +20,17 @@ class App extends Component{
           ],
         showPersons: false
     }
+
+    static getDerivedStateFromProps(props, state){
+        console.log('[App.js] getDerivedStateFromProps', props);
+        return state;
+    }
+
+    componentDidMount(){
+        console.log('[App.js] componentDidMount');
+    }
+
+
 
     deletePersonHandler = (currentIndex) => {
         //const oldPerson = this.state.persons.splice();  or
@@ -55,7 +73,7 @@ class App extends Component{
     }
 
     render() {
-        console.log('in the render() method');
+        console.log('[App.js] render');
 
         let persons = null;
 
@@ -75,6 +93,7 @@ class App extends Component{
             // we use className instead of class, cause 'class' is a reserve word in Js
                 <div className={appClasses.App}>
                     <Cockpit
+                        title={this.props.title}
                         toggle={this.togglePersonsHandler}
                         persons={this.state.persons}
                         showPersons={this.state.showPersons}

@@ -3,7 +3,7 @@ import classes from './Person.module.css';
 
 //a component is just a js function return jsx
 const person = (props) => {
-
+    console.log('[Person.js] rendering...');
     return (
         <div className={classes.Person}>
             <p onClick={props.click}> My name is {props.name} and I'm {props.age} years old !</p>
