@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import appClasses from './App.module.css';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
 
 class App extends Component{
     // state can only be accessed in class-based components!
