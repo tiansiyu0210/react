@@ -6,8 +6,11 @@ const Cockpit = (props) => {
 
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
-        //Http request...
-    });
+        //fake Http request...
+        setTimeout(() => {
+            alert('save data in cloud');
+        }, 1000);
+    }, [props.persons]);//if we use empty array [] here, it only run once.
 
     let buttonRed = '';
 
