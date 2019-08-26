@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import appClasses from './App.module.css';
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component{
     // state can only be accessed in class-based components!
@@ -57,49 +58,30 @@ class App extends Component{
         console.log('in the render() method');
 
         let persons = null;
-        let buttonRed = '';
 
         if(this.state.showPersons){
-            persons = (
-                <div>
-                    {this.state.persons.map((p, index) => {
-                        return (
-                            <Person
-                                name={p.name}
-                                age={p.age}
-                                click={() => this.deletePersonHandler(index)}
-                                key={p.id}
-                                changeName={(event) => this.changeNameHandler(event, p.id)}
-                            />)
-                    })}
-                </div>
-            );
+            persons = <Persons
+                       persons={this.state.persons}
+                       click={this.deletePersonHandler}
+                       changeName={this.changeNameHandler}
+                      />
 
-            buttonRed = appClasses.Red;
         }
 
-        const pClasses = [];
 
-        if(this.state.persons.length <= 2){
-            pClasses.push(appClasses.red);
-        }
-
-        if(this.state.persons.length <= 1){
-            pClasses.push(appClasses.bold);
-        }
-
-        console.log(pClasses);
 
         return (
             //this is jsx code , not html
             // we use className instead of class, cause 'class' is a reserve word in Js
                 <div className={appClasses.App}>
-                    <h1>header</h1>
-                    <p className={pClasses.join(' ')}>this is really working</p>
-                    {/* https://reactjs.org/docs/events.html#supported-events */}
-                    <button className={buttonRed} onClick={this.togglePersonsHandler}>show/hide person</button>
+                    <Cockpit
+                        toggle={this.togglePersonsHandler}
+                        persons={this.state.persons}
+                        showPersons={this.state.showPersons}
+                    />
                     {persons}
                 </div>
+
         );
         //jsx compiles to the code below
         //return React.createElement('div', {className: 'App'}, 'first text', 'second text', React.createElement('h1', null, 'third inner h1 text'));
