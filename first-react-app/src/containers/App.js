@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import appClasses from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/WithClass';
+import Aux from '../hoc/Aux';
 
 class App extends Component{
     constructor(props){
@@ -108,7 +109,7 @@ class App extends Component{
         return (
             //this is jsx code , not html
             // we use className instead of class, cause 'class' is a reserve word in Js
-                <WithClass classes={appClasses.App}>
+                <Aux>
                     <button onClick={() => {
                         this.setState({showCockpit: false})}}> Remove Cockpit </button>
                     {
@@ -120,7 +121,7 @@ class App extends Component{
                         /> : null
                     }
                     {persons}
-                </WithClass>
+                </Aux>
 
         );
         //jsx compiles to the code below
@@ -129,7 +130,7 @@ class App extends Component{
 }
 
 // lecture 67: run "sudo npm install --save radium"
-export default App;
+export default withClass(App, appClasses.App);
 
 
 
