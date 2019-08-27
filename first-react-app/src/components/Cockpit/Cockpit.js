@@ -10,7 +10,17 @@ const Cockpit = (props) => {
         setTimeout(() => {
             alert('save data in cloud');
         }, 1000);
+        return () => {
+            console.log('[Cockpit.js] clean up in useEffect')
+        }
     }, [props.persons]);//if we use empty array [] here, it only run once.
+
+    useEffect(() => {
+        console.log('[Cockpit.js] 2nd useEffect');
+        return () => {
+            console.log('[Cockpit.js] clean up in 2nd useEffect')
+        }
+    })
 
     let buttonRed = '';
 
