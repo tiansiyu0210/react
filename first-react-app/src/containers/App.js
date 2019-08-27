@@ -16,9 +16,9 @@ class App extends Component{
     // state can only be accessed in class-based components!
     state = {
         persons: [
-            {id:'p1', name: "tian", age: "31" },
-            {id:'p2',name: "chris", age: "23" },
-            {id:'p3',name: "mike", age: "21" }
+            {id:'p1', name: "tian", age: 31 },
+            {id:'p2',name: "chris", age: 23 },
+            {id:'p3',name: "mike", age: 21 }
           ],
         showPersons: false,
         showCockpit: true,
