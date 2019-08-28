@@ -4,6 +4,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import withClass from '../hoc/WithClass';
 import Aux from '../hoc/Aux';
+import PersonAuth from '../context/auth-context';
 
 class App extends Component{
     constructor(props){
@@ -22,7 +23,8 @@ class App extends Component{
           ],
         showPersons: false,
         showCockpit: true,
-        counter: 0
+        counter: 0,
+        auth: false
     }
 
     static getDerivedStateFromProps(props, state){
@@ -49,6 +51,9 @@ class App extends Component{
         console.log(snapshot);
     }
 
+    loginHandler = () => {
+        this.setState({auth: true})
+    }
 
 
     deletePersonHandler = (currentIndex) => {
@@ -114,17 +119,22 @@ class App extends Component{
             //this is jsx code , not html
             // we use className instead of class, cause 'class' is a reserve word in Js
                 <Aux>
-                    <button onClick={() => {
-                        this.setState({showCockpit: false})}}> Remove Cockpit </button>
-                    {
-                        this.state.showCockpit ? <Cockpit
-                        title={this.props.title}
-                        toggle={this.togglePersonsHandler}
-                        personsLen={this.state.persons.length}
-                        showPersons={this.state.showPersons}
-                        /> : null
-                    }
-                    {persons}
+                    <PersonAuth.Provider value={{
+                        auth: this.state.auth,
+                        login: this.loginHandler
+                    }}>
+                        <button onClick={() => {
+                            this.setState({showCockpit: false})}}> Remove Cockpit </button>
+                        {
+                            this.state.showCockpit ? <Cockpit
+                                title={this.props.title}
+                                toggle={this.togglePersonsHandler}
+                                personsLen={this.state.persons.length}
+                                showPersons={this.state.showPersons}
+                            /> : null
+                        }
+                        {persons}
+                    </PersonAuth.Provider>
                 </Aux>
 
         );

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import cockpitClasses from "./Cocktip.module.css";
+import PersonAuth from '../../context/auth-context';
 
 //Component name should start with Capital letter
 const Cockpit = (props) => {
@@ -51,6 +52,10 @@ const Cockpit = (props) => {
             <p className={pClasses.join(' ')}>this is really working</p>
             {/* https://reactjs.org/docs/events.html#supported-events */}
             <button ref={btnRef} className={buttonRed} onClick={props.toggle}>show/hide person</button>
+            <PersonAuth.Consumer>
+                {(context) => <button onClick={context.login}> log in </button>}
+            </PersonAuth.Consumer>
+
         </div>
     );
 }
