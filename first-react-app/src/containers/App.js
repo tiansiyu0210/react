@@ -52,7 +52,11 @@ class App extends Component{
     }
 
     loginHandler = () => {
-        this.setState({auth: true})
+        this.setState((prevState, props) => {
+            return {
+                auth: !prevState.auth
+            };
+        });
     }
 
 
