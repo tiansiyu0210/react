@@ -1,17 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import cockpitClasses from "./Cocktip.module.css";
 
 //Component name should start with Capital letter
 const Cockpit = (props) => {
 
+    const btnRef = useRef(null);
+
+    //useEffect run after render the jsx
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         //fake Http request...
-        const timer = setTimeout(() => {
-            alert('save data in cloud');
-        }, 1000);
+        // const timer = setTimeout(() => {
+        //     alert('save data in cloud');
+        // }, 1000);
+        btnRef.current.click();
         return () => {
-            clearTimeout(timer);
+            //clearTimeout(timer);
             console.log('[Cockpit.js] clean up in useEffect')
         }
     }, []);//if we use empty array [] here, it only run once.
@@ -46,7 +50,7 @@ const Cockpit = (props) => {
             <h1>{props.title}</h1>
             <p className={pClasses.join(' ')}>this is really working</p>
             {/* https://reactjs.org/docs/events.html#supported-events */}
-            <button className={buttonRed} onClick={props.toggle}>show/hide person</button>
+            <button ref={btnRef} className={buttonRed} onClick={props.toggle}>show/hide person</button>
         </div>
     );
 }
