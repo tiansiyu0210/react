@@ -13,18 +13,24 @@ class Person extends Component {
         this.inputElRef = React.createRef()
     }
 
+    static contextType = PersonAuth;
+
     componentDidMount(){
         //this.inputElData.focus();
         this.inputElRef.current.focus();
+        console.log(this.context.auth);
     }
 
     render() {
         console.log('[Person.js] rendering...');
         return (
             <Aux>
-                <PersonAuth.Consumer>
-                    {context => context.auth ? <p> logged in </p> : <p> logged out </p>}
-                </PersonAuth.Consumer>
+                {/*<PersonAuth.Consumer>*/}
+                    {/*{context => context.auth ? <p> logged in </p> : <p> logged out </p>}*/}
+                {/*</PersonAuth.Consumer>*/}
+
+                { this.context.auth ? <p> logged in </p> : <p> logged out </p> }
+
                 <p onClick={this.props.click}> My name is {this.props.name} and I'm {this.props.age} years old !</p>
                 <p>{this.props.children}</p>
                 <input

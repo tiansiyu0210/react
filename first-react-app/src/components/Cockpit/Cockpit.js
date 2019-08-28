@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import cockpitClasses from "./Cocktip.module.css";
 import PersonAuth from '../../context/auth-context';
 
@@ -6,6 +6,8 @@ import PersonAuth from '../../context/auth-context';
 const Cockpit = (props) => {
 
     const btnRef = useRef(null);
+    const authBtn = useContext(PersonAuth);
+    console.log(authBtn.auth);
 
     //useEffect run after render the jsx
     useEffect(() => {
@@ -52,10 +54,10 @@ const Cockpit = (props) => {
             <p className={pClasses.join(' ')}>this is really working</p>
             {/* https://reactjs.org/docs/events.html#supported-events */}
             <button ref={btnRef} className={buttonRed} onClick={props.toggle}>show/hide person</button>
-            <PersonAuth.Consumer>
-                {(context) => <button onClick={context.login}> log in </button>}
-            </PersonAuth.Consumer>
-
+            {/*<PersonAuth.Consumer>*/}
+                {/*{(context) => <button onClick={context.login}> log in </button>}*/}
+            {/*</PersonAuth.Consumer>*/}
+            <button onClick={authBtn.login}> log in </button>
         </div>
     );
 }
